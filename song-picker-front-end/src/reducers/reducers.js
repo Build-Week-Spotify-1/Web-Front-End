@@ -4,6 +4,11 @@ import {
   SIGNIN_FAIL
 } from "../actions/SigninAction";
 import {
+  FETCH_USER_START,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAIL
+} from "../actions/FetchUserAction";
+import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL
@@ -20,6 +25,12 @@ import {
   FETCH_FAVES_FAIL
 } from "../actions/FetchFavesAction";
 
+import {
+  ADD_FAVES_START,
+  ADD_FAVES_SUCCESS,
+  ADD_FAVES_FAIL
+} from "../actions/AddFavesAction";
+
 const initialState = {
   user: {
     username: "",
@@ -29,6 +40,12 @@ const initialState = {
   },
   users: [],
   faves: [],
+  // newFave: {
+  //   user_id: "",
+  //   title: "",
+  //   artist: "",
+  //   album: ""
+  // },
   suggested: [],
   isLoading: false,
   error: null,
@@ -61,6 +78,27 @@ export const reducers = (state = initialState, action) => {
         error: "Signup Failed"
       };
 
+    //FETCH USER
+    case FETCH_USER_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload,
+        error: ""
+      };
+    case FETCH_USER_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+
     //SONG SUGGESTIONS
     case SUGGEST_START:
       return {
@@ -80,6 +118,26 @@ export const reducers = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: "Suggestions failed"
+      };
+
+    //ADD FAVES
+    case ADD_FAVES_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case ADD_FAVES_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: ""
+      };
+    case ADD_FAVES_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
       };
 
     //FETCH FAVES
@@ -102,6 +160,7 @@ export const reducers = (state = initialState, action) => {
         isLoading: false,
         error: action.payload
       };
+
     default:
       return state;
   }

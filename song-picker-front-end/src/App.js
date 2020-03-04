@@ -4,7 +4,6 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import DashBoard from "./components/DashBoard";
 import EditProfile from "./components/EditProfile";
-import Suggested from "./components/Suggested";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Link, Switch, Route } from "react-router-dom";
@@ -54,9 +53,11 @@ function App() {
             <NavBar />
             <SongFind />
           </PrivateRoute>
-          {/* <Route exact path="/editprofile">
-          <EditProfile />
-        </Route> */}
+          <PrivateRoute exact path="/edit">
+            <NavBar />
+            <EditProfile />
+          </PrivateRoute>
+ 
           {/* <Route exact path="/suggested">
           <Suggested />
         </Route> */}

@@ -61,7 +61,7 @@ function SignUp(props) {
     last_name: ""
   });
 
-  console.log("signup newUser check", newUser);
+  // console.log("signup newUser check", newUser);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -95,7 +95,6 @@ function SignUp(props) {
                 variant="outlined"
                 required
                 fullWidth
-                // id="first_name"
                 autoFocus
                 value={newUser.username}
                 onChange={handleChanges}
@@ -118,7 +117,6 @@ function SignUp(props) {
                 variant="outlined"
                 required
                 fullWidth
-                // id="first_name"
                 label="First Name"
                 value={newUser.first_name}
                 onChange={handleChanges}
@@ -131,13 +129,11 @@ function SignUp(props) {
                 required
                 fullWidth
                 label="Last Name"
-                // id="last_name"
                 value={newUser.last_name}
                 onChange={handleChanges}
                 name="last_name"
               />
             </Grid>
-           
           </Grid>
           <Button
             type="submit"
@@ -165,8 +161,7 @@ function SignUp(props) {
 }
 
 const mapStateToProps = state => {
-    return state;
-  };
-  
-  export default connect(mapStateToProps, { signup })(SignUp);
-  
+  return state;
+};
+
+export default connect(mapStateToProps, { signup })(SignUp);

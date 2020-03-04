@@ -91,7 +91,7 @@ export default function SignInSide() {
         history.push("/dashboard");
       })
       .catch(err => {
-        console.log("SIGN IN ERROR: ", err);
+        // console.log("SIGN IN ERROR: ", err);
         window.alert("Incorrect credentials or user does not exist.");
       });
   };
@@ -142,7 +142,7 @@ export default function SignInSide() {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link href="/SignUp" variant="body2">
+                  <Link href="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
