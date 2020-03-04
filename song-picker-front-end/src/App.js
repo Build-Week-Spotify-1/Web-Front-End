@@ -9,6 +9,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Link, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
+import NavBar from "./components/NavBar";
 
 function App() {
   const theme = React.useMemo(
@@ -45,6 +46,7 @@ function App() {
             <SignUp />
           </Route>
           <PrivateRoute exact path="/dashboard">
+            <NavBar />
             <DashBoard />
           </PrivateRoute>
           {/* <Route exact path="/editprofile">
