@@ -92,7 +92,7 @@ const NavBar = () => {
                 Suggestions{" "}
               </MenuItem>
             </Link>
-            <Link className={classes.linkBut} to="/editprofile">
+            <Link className={classes.linkBut} to="/edit">
               <MenuItem className={classes.menuItems} onClick={closeMenu}>
                 {" "}
                 Edit Profile{" "}

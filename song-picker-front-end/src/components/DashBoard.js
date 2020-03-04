@@ -1,20 +1,10 @@
-import React, {useState, useEffect} from "react";
-import {connect} from "react-redux"
-import {fetchFaves} from "../actions/FetchFavesAction"
+import React, { useState, useEffect } from "react";
 
-import {
-  AppBar,
-  Button,
-  Grid,
-  Toolbar,
-  Typography,
-  Container,
-  Link
-} from "@material-ui/core/";
-import CameraIcon from "@material-ui/icons/PhotoCamera";
+import { Button, Grid, Typography, Container, Link } from "@material-ui/core/";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
-import SongCards from "./SongCards";
+import DashBoardSongCards from "./DashBoardSongCards";
+import AxiosWithAuth from "../utils/AxiosWithAuth";
 
 function Copyright() {
   return (
@@ -61,11 +51,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-export default function Album() {
+export default function DashBoard() {
   const classes = useStyles();
   const userMessage = localStorage.getItem("message");
+  const id = localStorage.getItem("user_id");
+  const [faves, setFaves] = useState([]);
+
+  useEffect(() => {
+    AxiosWithAuth()
+      .get(`/api/songs/${id}/faves`)
+      .then(res => {
+        console.log("get faves res", res);
+        setFaves(res.data);
+      })
+      .catch(err => {
+        console.log("get faves error: ", err);
+      });
+  }, []);
+
   return (
     <div>
       <CssBaseline />
@@ -89,15 +92,14 @@ export default function Album() {
               color="textSecondary"
               paragraph
             >
-              Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
+              Here are all your favorite songs. If you don't have any you can
+              find some suggestions at our finder.
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
-                    Main call to action
+                    Song Finder
                   </Button>
                 </Grid>
                 <Grid item>
@@ -112,14 +114,14 @@ export default function Album() {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map(card => (
-              <SongCards key={card} />
+            {faves.map(song => (
+              <DashBoardSongCards key={song} />
             ))}
           </Grid>
         </Container>
       </main>
       {/* Footer */}
-      <footer className={classes.footer}>
+      {/* <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
@@ -132,7 +134,7 @@ export default function Album() {
           Something here to give the footer a purpose!
         </Typography>
         <Copyright />
-      </footer>
+      </footer> */}
       {/* End footer */}
     </div>
   );

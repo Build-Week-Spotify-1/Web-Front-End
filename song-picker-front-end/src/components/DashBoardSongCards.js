@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -9,7 +9,7 @@ import {
   Typography
 } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
-import { songSuggest } from "../actions/SuggestAction";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -43,33 +43,42 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SongCards({ song }) {
-  console.log("song card props", song);
+function DashBoardSongCards(props) {
   const classes = useStyles();
+  const id = localStorage.getItem("user_id");
 
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card className={classes.card}>
         <CardMedia
           className={classes.cardMedia}
-          image={song.info.image}
+          image="https://source.unsplash.com/random"
           title="Image title"
         />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
-            {song.info.artist} - {song.info.title}
+            Heading
           </Typography>
-          <Typography>Album: {song.info.album}</Typography>
+          <Typography>
+            This is a media card. You can use this section to describe the
+            content.
+          </Typography>
         </CardContent>
         <CardActions>
           <Button size="small" color="primary">
-            Add to Favorites
+            View
           </Button>
           <Button size="small" color="primary">
-            Delete
+            Edit
           </Button>
         </CardActions>
       </Card>
     </Grid>
   );
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, {})(DashBoardSongCards);

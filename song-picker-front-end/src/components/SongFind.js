@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { songSuggest } from "../actions/SuggestAction";
 import axios from "axios";
-import SongCards from './SongCards'
+import SongFindCards from "./SongFindCards";
 const useStyles = makeStyles(theme => ({
   root: {
     color: "red"
@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SongFind(props) {
-  console.log("songfind props", props);
+  // console.log("songfind props", props);
   const classes = useStyles();
   const history = useHistory();
 
@@ -34,7 +34,7 @@ function SongFind(props) {
   const submitQuery = e => {
     e.preventDefault();
     props.songSuggest(query);
-    console.log("submit query", query);
+    // console.log("submit query", query);
   };
 
   return (
@@ -62,7 +62,7 @@ function SongFind(props) {
       <div>
         {suggested.length > 0 ? (
           suggested.map(song => (
-            <SongCards key={song.info.title} song={song} />
+            <SongFindCards key={song.info.title} song={song} />
           ))
         ) : (
           <p>Enter a suggestions above</p>
