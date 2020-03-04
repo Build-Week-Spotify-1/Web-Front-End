@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import {
-    Menu,
-    MenuItem,
-    Button,
-    Toolbar,
-    AppBar,
-    Typography
+  Menu,
+  MenuItem,
+  Button,
+  Toolbar,
+  AppBar,
+  Typography
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
-import AudiotrackIcon from '@material-ui/icons/Audiotrack';
+import AudiotrackIcon from "@material-ui/icons/Audiotrack";
+import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -30,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     textAlign: "center",
     margin: "auto",
-    marginRight: "1.5%",
+    marginRight: "1.5%"
     // fontFamily: "Concert One, cursive",
   },
   menuIcon: {
@@ -46,17 +48,18 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none"
   },
   menuItems: {
-    color: "#E2FFCE",
+    color: "#E2FFCE"
     // color: theme.palette.primary
   }
 }));
 
 const NavBar = () => {
   const classes = useStyles();
+  const history = useHistory();
+
   //used to toggle our drop down menu
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState();
-
   const recordButtonPosition = event => {
     setAnchorEl(event.currentTarget);
     setMenuOpen(true);
@@ -65,6 +68,10 @@ const NavBar = () => {
     setMenuOpen(false);
   };
 
+  const logOut = () => {
+    // history.push("/");
+    localStorage.clear("token");
+  };
   return (
     <div>
       <AppBar position="static" className={classes.appBar}>
@@ -79,7 +86,12 @@ const NavBar = () => {
                 Dashboard{" "}
               </MenuItem>
             </Link>
-
+            <Link className={classes.linkBut} to="/search">
+              <MenuItem className={classes.menuItems} onClick={closeMenu}>
+                {" "}
+                Suggestions{" "}
+              </MenuItem>
+            </Link>
             <Link className={classes.linkBut} to="/editprofile">
               <MenuItem className={classes.menuItems} onClick={closeMenu}>
                 {" "}
@@ -92,32 +104,26 @@ const NavBar = () => {
                 GitHub{" "}
               </MenuItem>
             </a>
-            <a
-              className={classes.linkBut}
-              href=""
-            >
+            <a className={classes.linkBut} href="">
               <MenuItem className={classes.menuItems} onClick={closeMenu}>
                 {" "}
                 Our Story{" "}
               </MenuItem>
             </a>
-            <a
-              className={classes.linkBut}
-              href=""
-            >
+            <a className={classes.linkBut} href="">
               <MenuItem className={classes.menuItems} onClick={closeMenu}>
                 {" "}
                 The Team{" "}
               </MenuItem>
             </a>
-            <Link className={classes.linkBut} to="/">
+            <Link className={classes.linkBut} onClick={logOut} to="/">
               <MenuItem className={classes.menuItems} onClick={closeMenu}>
                 {" "}
                 Logout{" "}
               </MenuItem>
             </Link>
           </Menu>
-          
+
           <Typography variant="h4" className={classes.title}>
             SPOTIFY THING
           </Typography>

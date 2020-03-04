@@ -10,6 +10,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { Link, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import NavBar from "./components/NavBar";
+import SongFind from "./components/SongFind";
 
 function App() {
   const theme = React.useMemo(
@@ -48,6 +49,10 @@ function App() {
           <PrivateRoute exact path="/dashboard">
             <NavBar />
             <DashBoard />
+          </PrivateRoute>
+          <PrivateRoute exact path="/search">
+            <NavBar />
+            <SongFind />
           </PrivateRoute>
           {/* <Route exact path="/editprofile">
           <EditProfile />

@@ -87,6 +87,7 @@ export default function SignInSide() {
         console.log("sign in res", res.data);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("message", res.data.message);
+        localStorage.setItem("user_id", res.data.user_id);
         history.push("/dashboard");
       })
       .catch(err => {
