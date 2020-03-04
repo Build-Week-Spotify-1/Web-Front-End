@@ -1,4 +1,7 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import {connect} from "react-redux"
+import {fetchFaves} from "../actions/FetchFavesAction"
+
 import {
   AppBar,
   Button,
@@ -11,7 +14,7 @@ import {
 import CameraIcon from "@material-ui/icons/PhotoCamera";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
-import DashboardCards from "./DashboardCards";
+import SongCards from "./SongCards";
 
 function Copyright() {
   return (
@@ -110,7 +113,7 @@ export default function Album() {
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map(card => (
-              <DashboardCards key={card} />
+              <SongCards key={card} />
             ))}
           </Grid>
         </Container>
