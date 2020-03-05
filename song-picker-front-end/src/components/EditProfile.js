@@ -5,6 +5,7 @@ import { editProfile } from "../actions/EditProfileAction";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import { makeStyles, TextField, Typography, Button } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -48,6 +49,8 @@ const useStyles = makeStyles(theme => ({
 
 function EditProfile(props) {
   const classes = useStyles();
+  const history = useHistory();
+
   // console.log("edit profile1", props);
   const [user, setUser] = useState({
     username: "",
@@ -69,7 +72,7 @@ function EditProfile(props) {
         setUser(res.data);
       })
       .catch(err => console.error(err));
-  }, []);
+  }, [user_id]);
 
   const handleChange = e => {
     setUser({
@@ -81,6 +84,7 @@ function EditProfile(props) {
   const handleSubmit = e => {
     e.preventDefault();
     props.editProfile(user);
+    history.push("/dashboard");
   };
 
   // console.log("edit profile user", user);
@@ -98,7 +102,7 @@ function EditProfile(props) {
         value={user.username || ""}
         onChange={handleChange}
       />
-      <br />
+      {/* <br />
       <TextField
         className={classes.input}
         autoComplete="off"
@@ -107,7 +111,7 @@ function EditProfile(props) {
         name="password"
         value={user.password || ""}
         onChange={handleChange}
-      />
+      /> */}
       <br />
       <TextField
         className={classes.input}

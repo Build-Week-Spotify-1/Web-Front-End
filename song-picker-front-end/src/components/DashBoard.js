@@ -43,18 +43,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function DashBoard(props) {
+export default function DashBoard(props) {
   // console.log("dashboard props", props);
   const classes = useStyles();
   const userMessage = localStorage.getItem("message");
   const id = localStorage.getItem("user_id");
   const [faves, setFaves] = useState([]);
-  // console.log("faves", faves);
+  console.log("faves", faves);
 
   useEffect(() => {
     // props.fetchFaves(id);
     // setFaves(props.faves);
-    // console.log("useeffect runs");
+    console.log("useeffect runs");
     AxiosWithAuth()
       .get(`/api/songs/${id}/faves`)
       .then(res => {
@@ -117,7 +117,7 @@ function DashBoard(props) {
         <Grid container spacing={4}>
           {/* {faves.map(data => {console.log('map data', data)})} */}
           {faves.map(data => (
-            <DashBoardSongCards key={data.id} data={data} />
+            <DashBoardSongCards key={data.id} data={data} setFaves={setFaves} faves={faves}/>
           ))}
         </Grid>
       </Container>
@@ -125,8 +125,8 @@ function DashBoard(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return state;
-};
+// const mapStateToProps = state => {
+//   return state;
+// };
 
-export default connect(mapStateToProps, { fetchFaves })(DashBoard);
+// export default connect(mapStateToProps, { fetchFaves })(DashBoard);

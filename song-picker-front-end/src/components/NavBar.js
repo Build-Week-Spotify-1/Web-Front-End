@@ -11,7 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { Link } from "react-router-dom";
 import AudiotrackIcon from "@material-ui/icons/Audiotrack";
-import logo from "../songify.png";
+// import logo from "../songify.png";
+
 const useStyles = makeStyles(theme => ({
   appBar: {
     // backgroundColor: "#5B7648",
