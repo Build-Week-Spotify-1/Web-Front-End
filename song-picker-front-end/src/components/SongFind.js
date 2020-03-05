@@ -62,8 +62,11 @@ function SongFind(props) {
       <div>
         {suggested.length > 0 ? (
           suggested.map(song => (
-            <SongFindCards key={song.info.title} song={song} />
+            <SongFindCards key={song.info.album} song={song} />
           ))
+          // suggested.map(song => {
+          //   console.log('map song', song)
+          // })
         ) : (
           <p>Enter a suggestions above</p>
         )}

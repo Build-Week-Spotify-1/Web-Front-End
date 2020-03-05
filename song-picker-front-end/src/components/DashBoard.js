@@ -44,24 +44,24 @@ function DashBoard(props) {
   const classes = useStyles();
   const userMessage = localStorage.getItem("message");
   const id = localStorage.getItem("user_id");
-  const [faves, setFaves] = useState(props.faves);
+  const [faves, setFaves] = useState([]);
   console.log('faves', faves);
   
   useEffect(() => {
-    props.fetchFaves(id);
-    setFaves(props.faves)
-    // AxiosWithAuth()
-    //   .get(`/api/songs/${id}/faves`)
-    //   .then(res => {
-    //     console.log("get faves res", res);
-    //     setFaves(res.data);
-    //   })
-    //   .catch(err => {
-    //     console.error(
-    //       "Error communicating with server on GET to specific id faves: ",
-    //       err
-    //     );
-    //   });
+    // props.fetchFaves(id);
+    // setFaves(props.faves)
+    AxiosWithAuth()
+      .get(`/api/songs/${id}/faves`)
+      .then(res => {
+        console.log("get faves res", res);
+        setFaves(res.data);
+      })
+      .catch(err => {
+        console.error(
+          "Error communicating with server on GET to specific id faves: ",
+          err
+        );
+      });
   }, []);
 
   // console.log("dashboard faves", faves);
@@ -111,10 +111,10 @@ function DashBoard(props) {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {faves.map(data => {console.log('map data', data)})}
-            {/* {faves.map(data => (
+            {/* {faves.map(data => {console.log('map data', data)})} */}
+            {faves.map(data => (
               <DashBoardSongCards key={data.id} data={data} />
-            ))} */}
+            ))}
           </Grid>
         </Container>
       </main>
