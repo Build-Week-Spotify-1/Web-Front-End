@@ -49,12 +49,12 @@ export default function DashBoard(props) {
   const userMessage = localStorage.getItem("message");
   const id = localStorage.getItem("user_id");
   const [faves, setFaves] = useState([]);
-  console.log("faves", faves);
+  // console.log("faves", faves);
 
   useEffect(() => {
     // props.fetchFaves(id);
     // setFaves(props.faves);
-    console.log("useeffect runs");
+    // console.log("useeffect runs");
     AxiosWithAuth()
       .get(`/api/songs/${id}/faves`)
       .then(res => {
@@ -67,7 +67,7 @@ export default function DashBoard(props) {
           err
         );
       });
-  }, []);
+  });
 
   // console.log("dashboard faves", faves);
 

@@ -126,7 +126,7 @@ const NavBar = () => {
           </Menu>
 
           <Typography variant="h4" className={classes.title}>
-            SPOTIFY THING
+            SONGIFY
           </Typography>
 
           <AudiotrackIcon className={classes.icon} fontSize="small" />

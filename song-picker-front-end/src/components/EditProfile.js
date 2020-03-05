@@ -47,11 +47,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function EditProfile(props) {
+export default function EditProfile() {
   const classes = useStyles();
   const history = useHistory();
 
-  // console.log("edit profile1", props);
+  // console.log("edit profile props", props);
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -59,12 +59,16 @@ function EditProfile(props) {
     last_name: ""
   });
   let user_id = localStorage.getItem("user_id");
+  // console.log('props user', props.user)
 
   useEffect(() => {
     // props.fetchUser(user_id);
     // console.log("edit profile props2", props)
     // console.log("HELLO?")
+    // console.log('props user', props.user)
     // setUser(props.user);
+    // console.log('user last', user)
+
     AxiosWithAuth()
       .get(`/api/users/${user_id}`)
       .then(res => {
@@ -72,8 +76,13 @@ function EditProfile(props) {
         setUser(res.data);
       })
       .catch(err => console.error(err));
-  }, [user_id]);
+  }, []);
 
+  // useEffect(() => {
+  //   setUser(props.user);
+  //   console.log('2nd effect', user)
+  // }, [])
+  // console.log('user last', user)
   const handleChange = e => {
     setUser({
       ...user,
@@ -81,10 +90,26 @@ function EditProfile(props) {
     });
   };
 
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   props.editProfile(user);
+  //   history.push("/dashboard");
+  // };
+
   const handleSubmit = e => {
-    e.preventDefault();
-    props.editProfile(user);
-    history.push("/dashboard");
+    AxiosWithAuth()
+      .put(`/api/users/${user.id}`, user)
+      .then(res => {
+        console.log("edit profile res", res);
+        window.alert("Profile updated");
+        history.push("/dashboard");
+      })
+      .catch(err => {
+        console.error(
+          "Error communicating with server on PUT update profile: ",
+          err
+        );
+      });
   };
 
   // console.log("edit profile user", user);
@@ -95,6 +120,7 @@ function EditProfile(props) {
       <Typography>Edit Profile</Typography>
       <br />
       <TextField
+        required
         className={classes.input}
         autoComplete="off"
         label="Username"
@@ -114,6 +140,7 @@ function EditProfile(props) {
       /> */}
       <br />
       <TextField
+        required
         className={classes.input}
         autoComplete="off"
         label="First Name"
@@ -123,6 +150,7 @@ function EditProfile(props) {
       />
       <br />
       <TextField
+        required
         className={classes.input}
         autoComplete="off"
         label="Last Name"
@@ -143,10 +171,10 @@ function EditProfile(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return state;
-};
+// const mapStateToProps = state => {
+//   return state;
+// };
 
-export default connect(mapStateToProps, { fetchUser, editProfile })(
-  EditProfile
-);
+// export default connect(mapStateToProps, { fetchUser, editProfile })(
+//   EditProfile
+// );
