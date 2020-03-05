@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   Card,
@@ -10,22 +10,9 @@ import {
 } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import { deleteFaves } from "../actions/DeleteFavesAction";
 
 const useStyles = makeStyles(theme => ({
-  icon: {
-    marginRight: theme.spacing(2)
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6)
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4)
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8)
-  },
   card: {
     height: "100%",
     display: "flex",
@@ -37,39 +24,44 @@ const useStyles = makeStyles(theme => ({
   cardContent: {
     flexGrow: 1
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6)
+
+  actions: {
+    margin: "auto"
   }
 }));
 
 function DashBoardSongCards(props) {
+  // console.log("dashboardsongscards props", props);
+
   const classes = useStyles();
-  const id = localStorage.getItem("user_id");
+  // const user_id = localStorage.getItem("user_id");
+  const song_id = props.data.id;
+
+  // console.log("user id", user_id);
+  // console.log("song id", song_id);
+
+  const handleDelete = e => {
+    e.preventDefault();
+    props.deleteFaves(song_id);
+  };
 
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card className={classes.card}>
         <CardMedia
           className={classes.cardMedia}
-          image="https://source.unsplash.com/random"
+          image={props.data.album_art}
           title="Image title"
         />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
-            Heading
+            {props.data.artist} - {props.data.title}
           </Typography>
-          <Typography>
-            This is a media card. You can use this section to describe the
-            content.
-          </Typography>
+          <Typography>Album: {props.data.album}</Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="primary">
-            View
-          </Button>
-          <Button size="small" color="primary">
-            Edit
+        <CardActions className={classes.actions}>
+          <Button size="small" color="primary" onClick={handleDelete}>
+            Remove from favorites
           </Button>
         </CardActions>
       </Card>
@@ -81,4 +73,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps, {})(DashBoardSongCards);
+export default connect(mapStateToProps, { deleteFaves })(DashBoardSongCards);

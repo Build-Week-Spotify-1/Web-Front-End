@@ -11,22 +11,10 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { addFaves } from "../actions/AddFavesAction";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles(theme => ({
-  icon: {
-    marginRight: theme.spacing(2)
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6)
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4)
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8)
-  },
+
   card: {
     height: "100%",
     display: "flex",
@@ -38,9 +26,9 @@ const useStyles = makeStyles(theme => ({
   cardContent: {
     flexGrow: 1
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6)
+
+  actions: {
+    margin: "auto"
   }
 }));
 
@@ -56,20 +44,28 @@ function SongFindCards(props) {
   // console.log("song card song", song);
   const classes = useStyles();
   const id = localStorage.getItem("user_id");
-  console.log('song find id', id);
+  // console.log('song find id', id);
   const [newFave, setNewFave] = useState({
-    "user_id": parseInt(id),
-    "title": `${props.song.info.title}`,
-    "artist": `${props.song.info.artist}`,
-    "album": `${props.song.info.album}`
+    user_id: parseInt(id),
+    title: `${props.song.info.title}`,
+    artist: `${props.song.info.artist}`,
+    album: `${props.song.info.album}`,
+    album_art: `${props.song.info.image}`
   });
+
+  const [isFaved, setIsFaved] = useState(false);
+
+  // const toggleFaved = e => {
+  //   setIsFaved(true);
+  // };
 
   // const [newFave, setNewFave] = useState(initialState)
 
-  console.log('newFave', newFave);
+  // console.log('newFave', newFave);
   const submitFave = e => {
     e.preventDefault();
     props.addFaves(newFave);
+    setIsFaved(true);
   };
 
   // name	type	required
@@ -77,6 +73,8 @@ function SongFindCards(props) {
   // title	string	yes
   // artist	string	yes
   // album	string	no
+  // console.log("isFaved?", isFaved);
+  // console.log("image url", props.song.info.image);
 
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -92,10 +90,14 @@ function SongFindCards(props) {
           </Typography>
           <Typography>Album: {props.song.info.album}</Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="primary" onClick={submitFave}>
-            Add to Favorites
-          </Button>
+        <CardActions className={classes.actions}>
+          {isFaved === false ? (
+            <Button size="small" color="primary" onClick={submitFave}>
+              Add to Favorites
+            </Button>
+          ) : (
+            <FavoriteIcon style={{ fill: "pink" }} />
+          )}
         </CardActions>
       </Card>
     </Grid>

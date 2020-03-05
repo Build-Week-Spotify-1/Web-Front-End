@@ -1,4 +1,3 @@
-import AxiosWithAuth from "../utils/AxiosWithAuth";
 import axios from "axios";
 
 export const SUGGEST_START = "SUGGEST_START";
@@ -23,10 +22,10 @@ export const songSuggest = info => dispatch => {
       dispatch({ type: SUGGEST_SUCCESS, payload: res.data.tracks });
     })
     .catch(err => {
-      // console.error(err);
+      console.error(
+        "Error communicating with DS server on GET suggestions: ",
+        err
+      );
       dispatch({ type: SUGGEST_FAIL, payload: err });
     });
 };
-
-// const user_id=localStorage.getItem("user_id")
-//       AxiosWithAuth().post('/api/songs/faves')
