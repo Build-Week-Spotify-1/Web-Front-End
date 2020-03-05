@@ -69,6 +69,9 @@ export default function DashBoard() {
       });
   }, []);
 
+
+  console.log('dashboard faves', faves);
+
   return (
     <div>
       <CssBaseline />
@@ -114,8 +117,8 @@ export default function DashBoard() {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {faves.map(song => (
-              <DashBoardSongCards key={song} />
+            {faves.map(data => (
+              <DashBoardSongCards key={data.id} data={data}/>
             ))}
           </Grid>
         </Container>

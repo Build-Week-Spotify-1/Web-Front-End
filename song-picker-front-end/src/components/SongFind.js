@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles, TextField, Typography, Button } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { songSuggest } from "../actions/SuggestAction";
-import axios from "axios";
 import SongFindCards from "./SongFindCards";
+
 const useStyles = makeStyles(theme => ({
   root: {
     color: "red"

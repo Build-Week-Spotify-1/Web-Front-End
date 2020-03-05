@@ -31,6 +31,18 @@ import {
   ADD_FAVES_FAIL
 } from "../actions/AddFavesAction";
 
+import {
+  DELETE_FAVES_START,
+  DELETE_FAVES_SUCCESS,
+  DELETE_FAVES_FAIL
+} from "../actions/DeleteFavesAction";
+
+import {
+  EDIT_PROFILE_START,
+  EDIT_PROFILE_SUCCESS,
+  EDIT_PROFILE_FAIL
+} from "../actions/EditProfileAction";
+
 const initialState = {
   user: {
     username: "",
@@ -40,12 +52,7 @@ const initialState = {
   },
   users: [],
   faves: [],
-  // newFave: {
-  //   user_id: "",
-  //   title: "",
-  //   artist: "",
-  //   album: ""
-  // },
+
   suggested: [],
   isLoading: false,
   error: null,
@@ -140,6 +147,27 @@ export const reducers = (state = initialState, action) => {
         error: action.payload
       };
 
+    //DELETE FAVES
+    case DELETE_FAVES_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case DELETE_FAVES_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        faves: state.faves.filter(fave => fave.id === action.payload.id),
+        error: ""
+      };
+    case DELETE_FAVES_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+
     //FETCH FAVES
     case FETCH_FAVES_START:
       return {
@@ -161,6 +189,26 @@ export const reducers = (state = initialState, action) => {
         error: action.payload
       };
 
+    //EDIT PROFILE
+    case EDIT_PROFILE_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case EDIT_PROFILE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload,
+        error: ""
+      };
+    case EDIT_PROFILE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     default:
       return state;
   }

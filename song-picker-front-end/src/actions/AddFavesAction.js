@@ -6,14 +6,16 @@ export const ADD_FAVES_FAIL = "ADD_FAVES_FAIL";
 
 export const addFaves = fave => dispatch => {
   dispatch({ type: ADD_FAVES_START });
+  // const fave = JSON.stringify(fave)
   console.log("checking fave being added to faves", fave);
   AxiosWithAuth()
-    .post("/api/songs/faves")
+    .post("/api/songs/faves", fave)
     .then(res => {
       console.log("addFaves post res", res);
+      dispatch({ type: ADD_FAVES_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.error(err);
+      console.error(err.response);
       dispatch({ type: ADD_FAVES_FAIL });
     });
 };
