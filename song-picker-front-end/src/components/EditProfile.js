@@ -102,6 +102,7 @@ export default function EditProfile() {
       .then(res => {
         console.log("edit profile res", res);
         window.alert("Profile updated");
+        history.push("/dashboard");
       })
       .catch(err => {
         console.error(
@@ -119,6 +120,7 @@ export default function EditProfile() {
       <Typography>Edit Profile</Typography>
       <br />
       <TextField
+        required
         className={classes.input}
         autoComplete="off"
         label="Username"
@@ -138,6 +140,7 @@ export default function EditProfile() {
       /> */}
       <br />
       <TextField
+        required
         className={classes.input}
         autoComplete="off"
         label="First Name"
@@ -147,6 +150,7 @@ export default function EditProfile() {
       />
       <br />
       <TextField
+        required
         className={classes.input}
         autoComplete="off"
         label="Last Name"
