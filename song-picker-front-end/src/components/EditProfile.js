@@ -8,11 +8,11 @@ import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles(theme => ({
   container: {
-    margin: 100,
-    color: "#898E88"
+    flexDirection: "column"
   },
   editIcon: {
-    color: "#99FF8A"
+    color: "#99FF8A",
+    marginTop: 50
   },
   contButton: {
     margin: theme.spacing(3, 0, 2),
@@ -33,12 +33,22 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       textDecoration: "underline"
     }
+  },
+  input: {
+    width: "35%",
+    marginTop: 30,
+    [theme.breakpoints.down(1300)]: {
+      width: "50%"
+    },
+    [theme.breakpoints.down(800)]: {
+      width: "75%"
+    }
   }
 }));
 
 function EditProfile(props) {
   const classes = useStyles();
-  console.log("edit profile1", props);
+  // console.log("edit profile1", props);
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -55,7 +65,7 @@ function EditProfile(props) {
     AxiosWithAuth()
       .get(`/api/users/${user_id}`)
       .then(res => {
-        console.log("edit profile get res", res);
+        // console.log("edit profile get res", res);
         setUser(res.data);
       })
       .catch(err => console.error(err));
@@ -73,22 +83,24 @@ function EditProfile(props) {
     props.editProfile(user);
   };
 
-  console.log("edit profile user", user);
+  // console.log("edit profile user", user);
   return (
-    <div>
+    <div className={classes.container}>
       <EditIcon className={classes.editIcon} fontSize="large" />
-
+      <br />
       <Typography>Edit Profile</Typography>
-
+      <br />
       <TextField
+        className={classes.input}
         autoComplete="off"
         label="Username"
         name="username"
         value={user.username || ""}
         onChange={handleChange}
       />
-
+      <br />
       <TextField
+        className={classes.input}
         autoComplete="off"
         label="Password"
         // type="password"
@@ -96,23 +108,25 @@ function EditProfile(props) {
         value={user.password || ""}
         onChange={handleChange}
       />
-
+      <br />
       <TextField
+        className={classes.input}
         autoComplete="off"
         label="First Name"
         name="first_name"
         value={user.first_name || ""}
         onChange={handleChange}
       />
-
+      <br />
       <TextField
+        className={classes.input}
         autoComplete="off"
         label="Last Name"
         name="last_name"
         value={user.last_name || ""}
         onChange={handleChange}
       />
-
+      <br />
       <Button
         onClick={handleSubmit}
         className={classes.contButton}

@@ -18,7 +18,7 @@ export const songSuggest = info => dispatch => {
       `https://cors-anywhere.herokuapp.com/https://spotify-suggestor.herokuapp.com/suggestions?title=${title}&artist=${artist}`
     )
     .then(res => {
-      console.log("suggest res", res.data.tracks);
+      // console.log("suggest res", res.data.tracks);
       dispatch({ type: SUGGEST_SUCCESS, payload: res.data.tracks });
     })
     .catch(err => {
@@ -29,6 +29,3 @@ export const songSuggest = info => dispatch => {
       dispatch({ type: SUGGEST_FAIL, payload: err });
     });
 };
-
-// const user_id=localStorage.getItem("user_id")
-//       AxiosWithAuth().post('/api/songs/faves')

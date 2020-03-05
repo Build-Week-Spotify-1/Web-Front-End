@@ -60,7 +60,7 @@ const initialState = {
 };
 
 export const reducers = (state = initialState, action) => {
-  console.log("reducer action", action);
+  // console.log("reducer action", action);
 
   switch (action.type) {
     //SIGNUP REDUCER

@@ -5,7 +5,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import DashBoardSongCards from "./DashBoardSongCards";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
-import {fetchFaves} from "../actions/FetchFavesAction"
+import { fetchFaves } from "../actions/FetchFavesAction";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -36,24 +37,28 @@ const useStyles = makeStyles(theme => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6)
+  },
+  linkbut: {
+    textDecoration: "none"
   }
 }));
 
 function DashBoard(props) {
-  console.log('dashboard props', props)
+  // console.log("dashboard props", props);
   const classes = useStyles();
   const userMessage = localStorage.getItem("message");
   const id = localStorage.getItem("user_id");
   const [faves, setFaves] = useState([]);
-  console.log('faves', faves);
-  
+  // console.log("faves", faves);
+
   useEffect(() => {
     // props.fetchFaves(id);
-    // setFaves(props.faves)
+    // setFaves(props.faves);
+    // console.log("useeffect runs");
     AxiosWithAuth()
       .get(`/api/songs/${id}/faves`)
       .then(res => {
-        console.log("get faves res", res);
+        // console.log("get faves res", res);
         setFaves(res.data);
       })
       .catch(err => {
@@ -70,70 +75,52 @@ function DashBoard(props) {
     <div>
       <CssBaseline />
 
-      <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              {userMessage}
-            </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              Here are all your favorite songs. If you don't have any you can
-              find some suggestions at our finder.
-            </Typography>
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
+      <div className={classes.heroContent}>
+        <Container maxWidth="sm">
+          <Typography
+            component="h1"
+            variant="h2"
+            align="center"
+            color="textPrimary"
+            gutterBottom
+          >
+            {userMessage}
+          </Typography>
+          <Typography
+            variant="h5"
+            align="center"
+            color="textSecondary"
+            paragraph
+          >
+            Here are all your favorite songs. If you don't have any you can find
+            some suggestions at our song finder.
+          </Typography>
+          <div className={classes.heroButtons}>
+            <Grid container spacing={2} justify="center">
+              <Grid item>
+                <Link to="/search" className={classes.linkbut}>
                   <Button variant="contained" color="primary">
                     Song Finder
                   </Button>
-                </Grid>
-                <Grid item>
+                </Link>
+              </Grid>
+              {/* <Grid item>
                   <Button variant="outlined" color="primary">
                     Secondary action
                   </Button>
-                </Grid>
-              </Grid>
-            </div>
-          </Container>
-        </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {/* {faves.map(data => {console.log('map data', data)})} */}
-            {faves.map(data => (
-              <DashBoardSongCards key={data.id} data={data} />
-            ))}
-          </Grid>
+                </Grid> */}
+            </Grid>
+          </div>
         </Container>
-      </main>
-      {/* Footer */}
-      {/* <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
-      </footer> */}
-      {/* End footer */}
+      </div>
+      <Container className={classes.cardGrid} maxWidth="md">
+        <Grid container spacing={4}>
+          {/* {faves.map(data => {console.log('map data', data)})} */}
+          {faves.map(data => (
+            <DashBoardSongCards key={data.id} data={data} />
+          ))}
+        </Grid>
+      </Container>
     </div>
   );
 }
@@ -142,4 +129,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps, {fetchFaves})(DashBoard);
+export default connect(mapStateToProps, { fetchFaves })(DashBoard);

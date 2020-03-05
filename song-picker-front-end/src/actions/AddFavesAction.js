@@ -11,7 +11,7 @@ export const addFaves = fave => dispatch => {
   AxiosWithAuth()
     .post("/api/songs/faves", fave)
     .then(res => {
-      console.log("addFaves post res", res);
+      // console.log("addFaves post res", res);
       dispatch({ type: ADD_FAVES_SUCCESS, payload: res.config.data });
     })
     .catch(err => {

@@ -11,11 +11,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { Link } from "react-router-dom";
 import AudiotrackIcon from "@material-ui/icons/Audiotrack";
-
+import logo from "../songify.png";
 const useStyles = makeStyles(theme => ({
   appBar: {
     // backgroundColor: "#5B7648",
-    color: "#E2FFCE",
+    // color: "#E2FFCE",
     justifyContent: "space-around"
   },
   menuButton: {
@@ -34,18 +34,17 @@ const useStyles = makeStyles(theme => ({
   },
   menuIcon: {
     position: "absolute",
-    color: "#E2FFCE"
+    color: "#000000"
   },
   icon: {
     position: "absolute",
-    right: "3rem",
-    color: "#E2FFCE"
+    right: "3rem"
   },
   linkBut: {
     textDecoration: "none"
   },
   menuItems: {
-    color: "#E2FFCE"
+    color: "#ffffff"
     // color: theme.palette.primary
   }
 }));
@@ -68,6 +67,9 @@ const NavBar = () => {
   const logOut = () => {
     // history.push("/");
     localStorage.clear("token");
+    localStorage.clear("user_id");
+    localStorage.clear("message");
+    // setToknd(null);
   };
   return (
     <div>
@@ -95,24 +97,25 @@ const NavBar = () => {
                 Edit Profile{" "}
               </MenuItem>
             </Link>
-            <a className={classes.linkBut} href="https://github.com/bw-wlj-2">
+            <a
+              className={classes.linkBut}
+              href="https://github.com/Build-Week-Spotify-1"
+            >
               <MenuItem className={classes.menuItems} onClick={closeMenu}>
                 {" "}
                 GitHub{" "}
               </MenuItem>
             </a>
-            <a className={classes.linkBut} href="">
+            <a
+              className={classes.linkBut}
+              href="https://diddleslip.github.io/Front-End/"
+            >
               <MenuItem className={classes.menuItems} onClick={closeMenu}>
                 {" "}
-                Our Story{" "}
+                About{" "}
               </MenuItem>
             </a>
-            <a className={classes.linkBut} href="">
-              <MenuItem className={classes.menuItems} onClick={closeMenu}>
-                {" "}
-                The Team{" "}
-              </MenuItem>
-            </a>
+
             <Link className={classes.linkBut} onClick={logOut} to="/">
               <MenuItem className={classes.menuItems} onClick={closeMenu}>
                 {" "}
@@ -124,7 +127,9 @@ const NavBar = () => {
           <Typography variant="h4" className={classes.title}>
             SPOTIFY THING
           </Typography>
+
           <AudiotrackIcon className={classes.icon} fontSize="small" />
+          {/* <logo className={classes.icon} /> */}
         </Toolbar>
       </AppBar>
     </div>

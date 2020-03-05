@@ -6,12 +6,12 @@ export const SIGNIN_FAIL = "SIGNIN_FAIL";
 
 export const signin = info => dispatch => {
   dispatch({ type: SIGNIN_START });
-  console.log("sign in info", info);
+  // console.log("sign in info", info);
   AxiosWithAuth()
     .post("/api/auth/login", info)
     .then(res => {
-      console.log("Signin POST res", res.data);
-      console.log("HELLO?????");
+      // console.log("Signin POST res", res.data);
+      // console.log("HELLO?????");
       // dispatch({ type: SIGNIN_SUCCESS, payload: res.data });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user_id", res.data.id);

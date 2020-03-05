@@ -6,11 +6,11 @@ export const EDIT_PROFILE_FAIL = "EDIT_PROFILE_FAIL";
 
 export const editProfile = user => dispatch => {
   dispatch({ type: EDIT_PROFILE_START });
-  console.log("edit profile action payload", user);
+  // console.log("edit profile action payload", user);
   AxiosWithAuth()
     .put(`/api/users/${user.id}`, user)
     .then(res => {
-      console.log("edit profile res", res);
+      // console.log("edit profile res", res);
       dispatch({ type: EDIT_PROFILE_SUCCESS, payload: res.config.data });
     })
     .catch(err => {

@@ -87,7 +87,7 @@ export default function SignInSide() {
         history.push("/dashboard");
       })
       .catch(err => {
-        // console.log("SIGN IN ERROR: ", err);
+        console.log("SIGN IN ERROR: ", err);
         window.alert("Incorrect credentials or user does not exist.");
       });
   };
