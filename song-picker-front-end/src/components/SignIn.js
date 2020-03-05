@@ -8,24 +8,10 @@ import {
   TextField,
   Link,
   Grid,
-  Box,
   Paper,
   Typography,
   makeStyles
 } from "@material-ui/core/";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles(theme => ({
   container: {},
@@ -143,9 +129,7 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
               </Grid>
-              <Box mt={5}>
-                <Copyright />
-              </Box>
+         
             </form>
           </div>
         </Grid>

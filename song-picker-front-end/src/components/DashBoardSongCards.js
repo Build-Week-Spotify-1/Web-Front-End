@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 export default function DashBoardSongCards(props) {
   // console.log("dashboardsongscards props", props);
   // console.log('dbsCARD', props.data.id)
-  console.log('props faves', props.faves)
+  // console.log('props faves', props.faves)
   const classes = useStyles();
   // const user_id = localStorage.getItem("user_id");
   const song_id = props.data.id;
@@ -49,7 +49,7 @@ export default function DashBoardSongCards(props) {
     AxiosWithAuth()
       .delete(`/api/songs/${user_id}/faves/${song_id}`)
       .then(res => {
-        console.log("delete fave res", res);
+        // console.log("delete fave res", res);
         props.setFaves(props.faves.filter(fave => fave.id !== song_id));
       })
       .catch(err => {

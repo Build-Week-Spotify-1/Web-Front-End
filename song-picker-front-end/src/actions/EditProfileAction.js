@@ -10,7 +10,7 @@ export const editProfile = user => dispatch => {
   AxiosWithAuth()
     .put(`/api/users/${user.id}`, user)
     .then(res => {
-      // console.log("edit profile res", res);
+      console.log("edit profile res", res);
       dispatch({ type: EDIT_PROFILE_SUCCESS, payload: res.config.data });
     })
     .catch(err => {

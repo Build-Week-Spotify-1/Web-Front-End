@@ -97,7 +97,7 @@ function SongFind(props) {
             paragraph
           >
             Enter an artist and song title to find the song, most similar
-            suggestions, and a least similar suggestion below.
+            suggestions below.
           </Typography>
 
           <TextField
@@ -126,14 +126,14 @@ function SongFind(props) {
                   color="primary"
                   onClick={submitQuery}
                 >
-                  Most similar
+                  Search
                 </Button>
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <Button variant="outlined" color="primary">
-                  Least similar
+                   Search least similar
                 </Button>
-              </Grid>
+              </Grid> */}
             </Grid>
           </div>
         </Container>
