@@ -86,14 +86,14 @@ function SignUp(props) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                required
                 label="Username"
                 name="username"
                 variant="outlined"
-                required
                 fullWidth
                 autoFocus
                 value={newUser.username}
@@ -102,10 +102,10 @@ function SignUp(props) {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                required
                 label="Password"
                 type="password"
                 variant="outlined"
-                required
                 fullWidth
                 value={newUser.password}
                 onChange={handleChanges}
@@ -114,8 +114,8 @@ function SignUp(props) {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
                 required
+                variant="outlined"
                 fullWidth
                 label="First Name"
                 value={newUser.first_name}
@@ -125,8 +125,8 @@ function SignUp(props) {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
                 required
+                variant="outlined"
                 fullWidth
                 label="Last Name"
                 value={newUser.last_name}

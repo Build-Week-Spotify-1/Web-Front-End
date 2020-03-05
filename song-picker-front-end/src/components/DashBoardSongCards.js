@@ -11,6 +11,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { deleteFaves } from "../actions/DeleteFavesAction";
+import AxiosWithAuth from "../utils/AxiosWithAuth";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -30,19 +31,30 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function DashBoardSongCards(props) {
+export default function DashBoardSongCards(props) {
   // console.log("dashboardsongscards props", props);
-
+  // console.log('dbsCARD', props.data.id)
+  console.log('props faves', props.faves)
   const classes = useStyles();
   // const user_id = localStorage.getItem("user_id");
   const song_id = props.data.id;
+  const user_id = localStorage.getItem("user_id");
 
   // console.log("user id", user_id);
   // console.log("song id", song_id);
-
+// console.log("props fave id", props.)
   const handleDelete = e => {
     e.preventDefault();
-    props.deleteFaves(song_id);
+    // props.deleteFaves(song_id);
+    AxiosWithAuth()
+      .delete(`/api/songs/${user_id}/faves/${song_id}`)
+      .then(res => {
+        console.log("delete fave res", res);
+        props.setFaves(props.faves.filter(fave => fave.id !== song_id));
+      })
+      .catch(err => {
+        console.error("Error talking to server on DELETE req... ", err);
+      });
   };
 
   return (
@@ -69,8 +81,8 @@ function DashBoardSongCards(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return state;
-};
+// const mapStateToProps = state => {
+//   return state;
+// };
 
-export default connect(mapStateToProps, { deleteFaves })(DashBoardSongCards);
+// export default connect(mapStateToProps, { deleteFaves })(DashBoardSongCards);
