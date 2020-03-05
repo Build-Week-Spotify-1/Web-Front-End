@@ -64,7 +64,6 @@ export const reducers = (state = initialState, action) => {
 
   switch (action.type) {
     //SIGNUP REDUCER
-
     case SIGNUP_START:
       return {
         ...state,
@@ -82,7 +81,27 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        error: "Signup Failed"
+        error: action.payload
+      };
+
+    //SIGNIN REDUCER
+    case SIGNIN_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case SIGNIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: ""
+      };
+    case SIGNIN_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: ""
       };
 
     //FETCH USER
@@ -124,7 +143,7 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        error: "Suggestions failed"
+        error: action.payload
       };
 
     //ADD FAVES
@@ -138,6 +157,7 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        faves: [...state.faves, action.payload],
         error: ""
       };
     case ADD_FAVES_FAIL:

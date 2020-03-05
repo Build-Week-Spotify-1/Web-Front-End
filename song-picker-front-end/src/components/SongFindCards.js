@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 // }
 
 function SongFindCards(props) {
-  console.log("song card props", props);
+  // console.log("song card props", props);
   // console.log("song card song", song);
   const classes = useStyles();
   const id = localStorage.getItem("user_id");
@@ -49,7 +49,8 @@ function SongFindCards(props) {
     user_id: parseInt(id),
     title: `${props.song.info.title}`,
     artist: `${props.song.info.artist}`,
-    album: `${props.song.info.album}`
+    album: `${props.song.info.album}`,
+    album_art: `${props.song.info.image}`
   });
 
   const [isFaved, setIsFaved] = useState(false);
@@ -72,8 +73,8 @@ function SongFindCards(props) {
   // title	string	yes
   // artist	string	yes
   // album	string	no
-  console.log("isFaved?", isFaved);
-  console.log("image url", props.song.info.image);
+  // console.log("isFaved?", isFaved);
+  // console.log("image url", props.song.info.image);
 
   return (
     <Grid item xs={12} sm={6} md={4}>

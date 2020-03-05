@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 
 function EditProfile(props) {
   const classes = useStyles();
-  console.log("edit profile", props);
+  console.log("edit profile1", props);
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -48,13 +48,17 @@ function EditProfile(props) {
   let user_id = localStorage.getItem("user_id");
 
   useEffect(() => {
-    AxiosWithAuth()
-      .get(`/api/users/${user_id}`)
-      .then(res => {
-        console.log("edit profile res", res);
-        setUser(res.data);
-      })
-      .catch(err => console.error(err));
+    props.fetchUser(user_id);
+    console.log("edit profile props2", props)
+    console.log("HELLO?")
+    setUser(props.user);
+    // AxiosWithAuth()
+    //   .get(`/api/users/${user_id}`)
+    //   .then(res => {
+    //     console.log("edit profile get res", res);
+    //     setUser(res.data);
+    //   })
+    //   .catch(err => console.error(err));
   }, []);
 
   const handleChange = e => {

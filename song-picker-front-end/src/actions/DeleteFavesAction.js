@@ -13,6 +13,10 @@ export const deleteFaves = song_id => dispatch => {
     .delete(`/api/songs/${user_id}/faves/${song_id}`)
     .then(res => {
       console.log("delete fave res", res);
+      // dispatch({ type: DELETE_FAVES__SUCCESS, payload: res.data.tracks });
+
     })
-    .catch(err => console.error(err));
+    .catch(err => {console.error(err)
+      // dispatch({ type: DELETE_FAVES__FAIL, payload: err });
+    });
 };

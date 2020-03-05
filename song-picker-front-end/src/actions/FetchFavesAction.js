@@ -10,7 +10,7 @@ export const fetchFaves = id => dispatch => {
   AxiosWithAuth()
     .get(`/api/songs/${id}/faves`)
     .then(res => {
-      // console.log("fetch faves res", res);
+      console.log("fetch faves res", res);
       dispatch({ type: FETCH_FAVES_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: FETCH_FAVES_FAIL, payload: err }));

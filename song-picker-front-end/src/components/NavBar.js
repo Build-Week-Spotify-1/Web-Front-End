@@ -10,10 +10,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { Link } from "react-router-dom";
-import MenuIcon from "@material-ui/icons/Menu";
 import AudiotrackIcon from "@material-ui/icons/Audiotrack";
-import { useHistory } from "react-router-dom";
-
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -55,7 +52,7 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = () => {
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
 
   //used to toggle our drop down menu
   const [menuOpen, setMenuOpen] = useState(false);

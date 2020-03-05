@@ -15,7 +15,8 @@ export const signup = info => {
         dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
       })
       .catch(err => {
-        // console.log(err.res);
+        console.log("Error communicating with server on POST request: ", err);
+        dispatch({ type: SIGNUP_FAIL, payload: err });
         window.alert("Please fill in all fields.");
       });
   };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   Card,
@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import AxiosWithAuth from "../utils/AxiosWithAuth";
 import { deleteFaves } from "../actions/DeleteFavesAction";
 
 const useStyles = makeStyles(theme => ({
@@ -32,14 +31,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function DashBoardSongCards(props) {
-  console.log("dashboardsongscards props", props);
+  // console.log("dashboardsongscards props", props);
 
   const classes = useStyles();
-  const user_id = localStorage.getItem("user_id");
+  // const user_id = localStorage.getItem("user_id");
   const song_id = props.data.id;
 
-  console.log("user id", user_id);
-  console.log("song id", song_id);
+  // console.log("user id", user_id);
+  // console.log("song id", song_id);
 
   const handleDelete = e => {
     e.preventDefault();

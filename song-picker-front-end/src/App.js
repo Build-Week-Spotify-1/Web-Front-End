@@ -42,22 +42,22 @@ function App() {
           <Route exact path="/">
             <SignIn />
           </Route>
-          <Route exact path="/signup">
+          <Route path="/signup">
             <SignUp />
           </Route>
-          <PrivateRoute exact path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <NavBar />
             <DashBoard />
           </PrivateRoute>
-          <PrivateRoute exact path="/search">
+          <PrivateRoute path="/search">
             <NavBar />
             <SongFind />
           </PrivateRoute>
-          <PrivateRoute exact path="/edit">
+          <PrivateRoute path="/edit">
             <NavBar />
             <EditProfile />
           </PrivateRoute>
- 
+
           {/* <Route exact path="/suggested">
           <Suggested />
         </Route> */}

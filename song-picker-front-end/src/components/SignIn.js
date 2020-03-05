@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
-
 import {
   Avatar,
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
   Box,
   Paper,
   Typography,
-  makeStyles,
-  Container
+  makeStyles
 } from "@material-ui/core/";
 
 function Copyright() {
@@ -84,7 +80,7 @@ export default function SignInSide() {
     AxiosWithAuth()
       .post("/api/auth/login", creds)
       .then(res => {
-        console.log("sign in res", res.data);
+        // console.log("sign in res", res.data);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("message", res.data.message);
         localStorage.setItem("user_id", res.data.user_id);

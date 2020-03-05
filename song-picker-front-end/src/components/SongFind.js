@@ -7,14 +7,14 @@ import SongFindCards from "./SongFindCards";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    color: "red"
+    
   }
 }));
 
 function SongFind(props) {
   // console.log("songfind props", props);
-  const classes = useStyles();
-  const history = useHistory();
+  // const classes = useStyles();
+  // const history = useHistory();
 
   const [query, setQuery] = useState({
     artist: "",
