@@ -12,6 +12,8 @@ import { connect } from "react-redux";
 import { songSuggest } from "../actions/SuggestAction";
 import SongFindCards from "./SongFindCards";
 import SpotifyPlayer from "react-spotify-player";
+import Plot from 'react-plotly.js';
+import SongPlot from "./SongPlot";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -170,6 +172,9 @@ function SongFind(props) {
             </Typography>
           )} */}
         </Grid>
+      </Container>
+      <Container maxWidth="md">
+        <SongPlot/>
       </Container>
     </div>
   );
