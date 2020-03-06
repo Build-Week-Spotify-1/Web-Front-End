@@ -76,7 +76,7 @@ function SongFind(props) {
     props.songSuggest(query);
     // console.log("submit query", query);
   };
-  console.log("search props", props);
+  // console.log("search props", props);
   return (
     <div>
       <div className={classes.heroContent}>
@@ -96,7 +96,7 @@ function SongFind(props) {
             color="textSecondary"
             paragraph
           >
-            Enter an artist and song title to find the song, most similar
+            Enter an artist and song title to find some songs that are similar
             suggestions below.
           </Typography>
 
@@ -153,7 +153,7 @@ function SongFind(props) {
             //   console.log('map song', song)
             // })
             <Typography variant="h3" className={classes.smallText}>
-              Please enter a suggestions above
+              Please enter a query above
             </Typography>
           )}
         </Grid>

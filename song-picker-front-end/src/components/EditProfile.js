@@ -26,8 +26,8 @@ const useStyles = makeStyles(theme => ({
     margin: "auto"
   },
   paper: {
-    padding: "auto",
-    margin: "auto",
+    // padding: "auto",
+    // margin: "auto",
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
   contButton: {
     margin: "auto",
     marginRight: 50,
+    marginBottom: 20,
     "&:hover": {
       backgroundColor: "#CCFFC4",
       color: "#007CB2"
@@ -50,6 +51,7 @@ const useStyles = makeStyles(theme => ({
   backButton: {
     margin: "auto",
     marginLeft: 50,
+    marginBottom: 20,
     backgroundColor: "#ff0000",
     color: "#ffffff",
     "&:hover": {
@@ -59,41 +61,44 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function EditProfile() {
+function EditProfile(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  const [user, setUser] = useState({
+  const [updatedUser, setUpdatedUser] = useState({
     username: "",
     password: "",
     first_name: "",
     last_name: ""
-    // displayPw: "******"
   });
-  let user_id = localStorage.getItem("user_id");
+
+  // let user_id = localStorage.getItem("user_id");
 
   useEffect(() => {
-    AxiosWithAuth()
-      .get(`/api/users/${user_id}`)
-      .then(res => {
-        console.log("edit profile get res", res);
-        setUser(res.data);
-        // console.log("user1", user);
-        // if (res.data.password.length > 0) {
-        //   setUser({ ...res.data, password: "******" });
-        //   console.log("user2", user);
-        // } else {
-        //   setUser(res.data);
-        // }
-      })
-      .catch(err => console.error(err));
+    setUpdatedUser(props.user);
+    // AxiosWithAuth()
+    //   .get(`/api/users/${user_id}`)
+    //   .then(res => {
+    //     console.log("edit profile get res", res);
+    //     setUser(res.data);
+    //     // console.log("user1", user);
+    //     // if (res.data.password.length > 0) {
+    //     //   setUser({ ...res.data, password: "******" });
+    //     //   console.log("user2", user);
+    //     // } else {
+    //     //   setUser(res.data);
+    //     // }
+    //   })
+    //   .catch(err => console.error(err));
   }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
     AxiosWithAuth()
-      .put(`/api/users/${user.id}`, user)
+      .put(`/api/users/${props.user.id}`, updatedUser)
       .then(res => {
+        // console.log("HELLO???");
+        // console.log("submit update res", res);
         window.alert("Profile updated");
         history.push("/dashboard");
       })
@@ -107,11 +112,15 @@ export default function EditProfile() {
   };
 
   const handleChange = e => {
-    setUser({
-      ...user,
+    setUpdatedUser({
+      ...updatedUser,
       [e.target.name]: e.target.value
     });
   };
+
+  // const handleChange = e => {
+  //   props.user[e.target.name] = e.target.value;
+  // };
 
   const goBack = () => {
     history.push("/dashboard");
@@ -121,7 +130,8 @@ export default function EditProfile() {
     <div className={classes.container}>
       <EditIcon className={classes.editIcon} fontSize="large" />
       <br />
-      <Typography>Edit Profile</Typography>
+      <Typography variant="h5">Edit Profile</Typography>
+
       <br />
       <Grid
         item
@@ -134,6 +144,10 @@ export default function EditProfile() {
         className={classes.grid}
       >
         <div className={classes.paper}>
+          <Typography>
+            You must retype your current password to change fields unless you
+            want to change your current password
+          </Typography>
           <form onSubmit={handleSubmit} className={classes.form}>
             <TextField
               required
@@ -142,7 +156,7 @@ export default function EditProfile() {
               autoComplete="off"
               label="Username"
               name="username"
-              value={user.username || ""}
+              value={updatedUser.username || ""}
               onChange={handleChange}
             />
             <TextField
@@ -153,7 +167,7 @@ export default function EditProfile() {
               label="Password"
               type="password"
               name="password"
-              value={user.password || ""}
+              value={updatedUser.password || ""}
               onChange={handleChange}
             />
             <TextField
@@ -163,7 +177,7 @@ export default function EditProfile() {
               autoComplete="off"
               label="First Name"
               name="first_name"
-              value={user.first_name || ""}
+              value={updatedUser.first_name || ""}
               onChange={handleChange}
             />
             <TextField
@@ -173,7 +187,7 @@ export default function EditProfile() {
               autoComplete="off"
               label="Last Name"
               name="last_name"
-              value={user.last_name || ""}
+              value={updatedUser.last_name || ""}
               onChange={handleChange}
             />
             <Button
@@ -197,3 +211,9 @@ export default function EditProfile() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, {})(EditProfile);

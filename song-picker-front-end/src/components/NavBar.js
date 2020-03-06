@@ -30,8 +30,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     textAlign: "center",
     margin: "auto",
-    marginRight: "1.5%"
-    // fontFamily: "Concert One, cursive",
+    marginRight: "1.5%",
+    width: 50,
+    height: 50
   },
   menuIcon: {
     position: "absolute",
@@ -128,8 +129,8 @@ const NavBar = () => {
           <Typography variant="h4" className={classes.title}>
             SONGIFY
           </Typography>
-          {/* <newlogogreen className={classes.title} /> */}
 
+          {/* <img src={newlogogreen} className={classes.title} /> */}
           <AudiotrackIcon className={classes.icon} fontSize="small" />
           {/* <logo className={classes.icon} /> */}
         </Toolbar>
