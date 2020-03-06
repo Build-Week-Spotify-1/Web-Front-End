@@ -12,7 +12,7 @@ import {
   Typography,
   makeStyles
 } from "@material-ui/core/";
-import newlogogreen from "../newlogogreen.png";
+import whitelogo from "../whitelogo.png";
 
 const useStyles = makeStyles(theme => ({
   container: {},
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0, 2)
   },
   logo: {
-    width: "90%",
+    width: "75%",
     height: "5%",
     marginBottom: 60,
     // [theme.breakpoints.down(1200)]: {
@@ -97,7 +97,7 @@ export default function SignInSide() {
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
             {/* <Avatar className={classes.avatar}></Avatar> */}
-            <img src={newlogogreen} className={classes.logo}/>
+            <img src={whitelogo} className={classes.logo}/>
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>

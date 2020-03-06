@@ -20,6 +20,12 @@ import {
 } from "../actions/SuggestAction";
 
 import {
+  SUGGEST_LEAST_FAIL,
+  SUGGEST_LEAST_START,
+  SUGGEST_LEAST_SUCCESS
+} from "../actions/SuggestLeastAction";
+
+import {
   FETCH_FAVES_START,
   FETCH_FAVES_SUCCESS,
   FETCH_FAVES_FAIL
@@ -54,6 +60,7 @@ const initialState = {
   faves: [],
 
   suggested: [],
+  least: null,
   isLoading: false,
   error: null,
   editing: false
@@ -129,6 +136,7 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
+        least: null,
         error: ""
       };
     case SUGGEST_SUCCESS:
@@ -143,6 +151,28 @@ export const reducers = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload
+      };
+
+    //LEAST LIKELY SUGGESTION:
+    case SUGGEST_LEAST_START:
+      return {
+        ...state,
+        isLoading: true,
+        suggested: [],
+        error: ""
+      };
+    case SUGGEST_LEAST_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        least: action.payload,
+        error: ""
+      };
+    case SUGGEST_LEAST_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.paylaod
       };
 
     //ADD FAVES

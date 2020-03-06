@@ -58,6 +58,10 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: "#ffffff",
       color: "#ff0000"
     }
+  },
+  text: {
+    marginTop: 20,
+    marginBottom: 20
   }
 }));
 
@@ -144,7 +148,7 @@ function EditProfile(props) {
         className={classes.grid}
       >
         <div className={classes.paper}>
-          <Typography>
+          <Typography className={classes.text}>
             You must retype your current password to change fields unless you
             want to change your current password
           </Typography>

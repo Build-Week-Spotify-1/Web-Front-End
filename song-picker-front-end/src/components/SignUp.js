@@ -14,7 +14,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signup } from "../actions/SignupAction";
-import newlogogreen from "../newlogogreen.png";
+import whitelogo from "../whitelogo.png";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -75,7 +75,7 @@ function SignUp(props) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-      <img src={newlogogreen} className={classes.logo}/>
+      <img src={whitelogo} className={classes.logo}/>
 
         <Typography component="h1" variant="h5">
           Sign up
