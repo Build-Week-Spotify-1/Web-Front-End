@@ -32,20 +32,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// let initialState = {
-//   "user_id": "",
-//   "title": "",
-//   "artist": "",
-//   "album": ""
-// }
-
 function SongFindCards(props) {
-  // console.log("song card props", props);
-  // console.log("song card song", song);
   const classes = useStyles();
   const id = localStorage.getItem("user_id");
-  // console.log('song find id', id);
-  const [newFave, setNewFave] = useState({
+  const [newFave] = useState({
     user_id: parseInt(id),
     title: `${props.song.info.title}`,
     artist: `${props.song.info.artist}`,
@@ -55,21 +45,11 @@ function SongFindCards(props) {
 
   const [isFaved, setIsFaved] = useState(false);
 
-  // const toggleFaved = e => {
-  //   setIsFaved(true);
-  // };
-
-  // const [newFave, setNewFave] = useState(initialState)
-
-  // console.log('newFave', newFave);
   const submitFave = e => {
     e.preventDefault();
     props.addFaves(newFave);
     setIsFaved(true);
   };
-
-  // console.log("isFaved?", isFaved);
-  // console.log("image url", props.song.info.image);
 
   const size = {
     width: "100%",

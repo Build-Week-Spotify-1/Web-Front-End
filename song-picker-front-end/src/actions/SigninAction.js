@@ -11,7 +11,6 @@ export const signin = info => dispatch => {
     .post("/api/auth/login", info)
     .then(res => {
       // console.log("Signin POST res", res.data);
-      // console.log("HELLO?????");
       // dispatch({ type: SIGNIN_SUCCESS, payload: res.data });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user_id", res.data.id);

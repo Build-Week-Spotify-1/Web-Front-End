@@ -12,7 +12,7 @@ export const signup = info => {
       .post("/api/auth/register", info)
       .then(res => {
         // console.log("signup res", res);
-        dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
+        // dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
       })
       .catch(err => {
         console.log("Error communicating with server on POST request: ", err);

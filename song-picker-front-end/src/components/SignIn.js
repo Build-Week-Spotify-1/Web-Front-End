@@ -118,7 +118,6 @@ export default function SignInSide() {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                // href="/dashboard"
               >
                 Sign In
               </Button>

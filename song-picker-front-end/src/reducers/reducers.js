@@ -74,7 +74,6 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        user: action.payload,
         error: ""
       };
     case SIGNUP_FAIL:
