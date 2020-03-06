@@ -151,14 +151,19 @@ function SongFind(props) {
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
 
-          {props.least ? (
+    
+         {props.least ? (
             <SongFindLeastCard song={props.least} />
-          ) : !props.suggested ? (
+          ) : <h1>what</h1>}
+
+
+
+          {!props.suggested ? (
             <Typography>
               Sorry, no results from that query. Try again!
             </Typography>
-          ) : props.suggested.tracks.length > 0 ? (
-            props.suggested.tracks.map(song => (
+          ) : props.suggested.length > 0 ? (
+            props.suggested.map(song => (
               <SongFindCards key={song.info.album} song={song} />
             ))
           ) : (
@@ -169,6 +174,24 @@ function SongFind(props) {
               Please enter a query above
             </Typography>
           )}
+//           {props.least ? (
+//             <SongFindLeastCard song={props.least} />
+//           ) : !props.suggested ? (
+//             <Typography>
+//               Sorry, no results from that query. Try again!
+//             </Typography>
+//           ) : props.suggested.tracks.length > 0 ? (
+//             props.suggested.tracks.map(song => (
+//               <SongFindCards key={song.info.album} song={song} />
+//             ))
+//           ) : (
+//             // suggested.map(song => {
+//             //   console.log('map song', song)
+//             // })
+//             <Typography variant="h3" className={classes.smallText}>
+//               Please enter a query above
+//             </Typography>
+//           )}
 
           {/* {!props.suggested ? (
             <Typography>
