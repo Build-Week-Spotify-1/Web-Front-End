@@ -161,9 +161,7 @@ function SongFind(props) {
           )}
         </Grid>
       </Container>
-      <Container maxWidth="md">
-        <SongPlot/>
-      </Container>
+      {props.suggested.tracks && <SongPlot/>}
     </div>
   );
 }
