@@ -4,11 +4,8 @@ import {
   Avatar,
   Button,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
-  Box,
   Typography,
   Container
 } from "@material-ui/core/";
@@ -140,7 +137,6 @@ function SignUp(props) {
           </Grid>
         </form>
       </div>
- 
     </Container>
   );
 }

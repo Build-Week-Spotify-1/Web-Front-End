@@ -12,7 +12,7 @@ export const deleteFaves = song_id => dispatch => {
   AxiosWithAuth()
     .delete(`/api/songs/${user_id}/faves/${song_id}`)
     .then(res => {
-      console.log("delete fave res", res);
+      // console.log("delete fave res", res);
       dispatch({ type: DELETE_FAVES_SUCCESS, payload: song_id });
 
     })

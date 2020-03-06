@@ -11,12 +11,11 @@ import {
 import { connect } from "react-redux";
 import { songSuggest } from "../actions/SuggestAction";
 import SongFindCards from "./SongFindCards";
-import SpotifyPlayer from "react-spotify-player";
 
 const useStyles = makeStyles(theme => ({
-  icon: {
-    marginRight: theme.spacing(2)
-  },
+  // icon: {
+  //   marginRight: theme.spacing(2)
+  // },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6)
@@ -28,21 +27,21 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8)
   },
-  card: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column"
-  },
-  cardMedia: {
-    paddingTop: "56.25%" // 16:9
-  },
-  cardContent: {
-    flexGrow: 1
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6)
-  },
+  // card: {
+  //   height: "100%",
+  //   display: "flex",
+  //   flexDirection: "column"
+  // },
+  // cardMedia: {
+  //   paddingTop: "56.25%" // 16:9
+  // },
+  // cardContent: {
+  //   flexGrow: 1
+  // },
+  // footer: {
+  //   backgroundColor: theme.palette.background.paper,
+  //   padding: theme.spacing(6)
+  // },
   smallText: {
     margin: "auto"
   },
@@ -157,18 +156,6 @@ function SongFind(props) {
               Please enter a suggestions above
             </Typography>
           )}
-          {/* {props.suggested.length > 0 ? (
-            props.suggested.map(song => (
-              <SongFindCards key={song.info.album} song={song} />
-            ))
-          ) : (
-            // suggested.map(song => {
-            //   console.log('map song', song)
-            // })
-            <Typography variant="h3" className={classes.smallText}>
-              Please enter a suggestions above
-            </Typography>
-          )} */}
         </Grid>
       </Container>
     </div>

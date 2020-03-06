@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Button, Grid, Typography, Container } from "@material-ui/core/";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import DashBoardSongCards from "./DashBoardSongCards";
-import AxiosWithAuth from "../utils/AxiosWithAuth";
 import { fetchFaves } from "../actions/FetchFavesAction";
 import { Link } from "react-router-dom";
+import newlogogreen from "../newlogogreen.png";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -44,39 +44,21 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function DashBoard(props) {
-  // console.log("dashboard props", props);
+  console.log("dashboard props", props);
   const classes = useStyles();
   const userMessage = localStorage.getItem("message");
   const user_id = localStorage.getItem("user_id");
-  // const [faves, setFaves] = useState([]);
-  // const [faves, setFaves] = [];
-  // console.log("faves", faves);
 
   useEffect(() => {
     props.fetchFaves(user_id);
-    // setFaves(props.faves);
-    // console.log("useeffect runs");
-    // AxiosWithAuth()
-    //   .get(`/api/songs/${user_id}/faves`)
-    //   .then(res => {
-    //     // console.log("get faves res", res);
-    //     setFaves(res.data);
-    //   })
-    //   .catch(err => {
-    //     console.error(
-    //       "Error communicating with server on GET to specific id faves: ",
-    //       err
-    //     );
-    //   });
   }, []);
-
-  // console.log("dashboard faves", faves);
 
   return (
     <div>
       <CssBaseline />
 
       <div className={classes.heroContent}>
+        <newlogogreen />
         <Container maxWidth="sm">
           <Typography
             component="h1"
@@ -116,10 +98,9 @@ function DashBoard(props) {
       </div>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
-          {/* {faves.map(data => {console.log('map data', data)})} */}
+          {/* {props.faves.map(data => {console.log('map data', data.id)})} */}
           {props.faves.map(data => (
-            // <DashBoardSongCards key={data.id} data={data} setFaves={setFaves} faves={faves}/>
-            <DashBoardSongCards key={data.id} data={data}/>
+            <DashBoardSongCards key={data.id} data={data} />
           ))}
         </Grid>
       </Container>

@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { Link } from "react-router-dom";
 import AudiotrackIcon from "@material-ui/icons/Audiotrack";
-// import logo from "../songify.png";
+import newlogogreen from "../newlogogreen.png";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -128,6 +128,7 @@ const NavBar = () => {
           <Typography variant="h4" className={classes.title}>
             SONGIFY
           </Typography>
+          {/* <newlogogreen className={classes.title} /> */}
 
           <AudiotrackIcon className={classes.icon} fontSize="small" />
           {/* <logo className={classes.icon} /> */}
