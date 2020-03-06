@@ -143,12 +143,12 @@ function SongFind(props) {
       </div>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
-          {!props.suggested ? (
+          {!props.suggested.tracks ? (
             <Typography>
               Sorry, no results from that query. Try again!
             </Typography>
-          ) : props.suggested.length > 0 ? (
-            props.suggested.map(song => (
+          ) : props.suggested.tracks.length > 0 ? (
+            props.suggested.tracks.map(song => (
               <SongFindCards key={song.info.album} song={song} />
             ))
           ) : (
