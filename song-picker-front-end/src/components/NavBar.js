@@ -48,6 +48,22 @@ const useStyles = makeStyles(theme => ({
   menuItems: {
     color: "#ffffff"
     // color: theme.palette.primary
+  },
+  logo: {
+    width: "15%",
+    height: "0.01%",
+    // flexGrow: 1,
+    // textAlign: "center",
+    margin: "auto",
+    // marginRight: "1.5%",
+       [theme.breakpoints.down(1000)]: {
+        width: "30%",
+        height: "0.08%",
+    },
+    [theme.breakpoints.down(700)]: {
+      width: "50%",
+      height: "0.2%",
+  },
   }
 }));
 
@@ -78,7 +94,7 @@ const NavBar = () => {
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Button className={classes.menuButton} onClick={recordButtonPosition}>
-            <AccountBoxIcon className={classes.menuIcon} fontSize="default" />
+            <AccountBoxIcon className={classes.menuIcon} fontSize="large" />
           </Button>
           <Menu anchorEl={anchorEl} open={menuOpen} onClose={closeMenu}>
             <Link className={classes.linkBut} to="/dashboard">
@@ -126,12 +142,12 @@ const NavBar = () => {
             </Link>
           </Menu>
 
-          <Typography variant="h4" className={classes.title}>
+          {/* <Typography variant="h4" className={classes.title}>
             SONGIFY
-          </Typography>
+          </Typography> */}
 
-          {/* <img src={newlogogreen} className={classes.title} /> */}
-          <AudiotrackIcon className={classes.icon} fontSize="small" />
+          <img src={newlogogreen} className={classes.logo} />
+          <AudiotrackIcon className={classes.icon} fontSize="large" />
           {/* <logo className={classes.icon} /> */}
         </Toolbar>
       </AppBar>

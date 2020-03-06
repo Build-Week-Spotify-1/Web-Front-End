@@ -10,7 +10,9 @@ import {
 // import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { songSuggest } from "../actions/SuggestAction";
+import { unlikely } from "../actions/SuggestLeastAction";
 import SongFindCards from "./SongFindCards";
+import SongFindLeastCard from "./SongFindLeastCard";
 
 const useStyles = makeStyles(theme => ({
   // icon: {
@@ -52,7 +54,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SongFind(props) {
-  // console.log("songfind props", props);
+  console.log("songfind props", props);
   const classes = useStyles();
   // const history = useHistory();
 
@@ -62,9 +64,7 @@ function SongFind(props) {
   });
   // const [suggested, setSuggested] = useState([]);
 
-  // useEffect(() => {
-
-  // }, []);
+  useEffect(() => {}, []);
   // console.log("suggest query", query);
 
   const handleChanges = e => {
@@ -76,7 +76,13 @@ function SongFind(props) {
     props.songSuggest(query);
     // console.log("submit query", query);
   };
-  // console.log("search props", props);
+
+  const unlike = e => {
+    e.preventDefault();
+    props.unlikely(query);
+    // console.log("submit query", query);
+  };
+
   return (
     <div>
       <div className={classes.heroContent}>
@@ -129,18 +135,20 @@ function SongFind(props) {
                   Search
                 </Button>
               </Grid>
-              {/* <Grid item>
-                <Button variant="outlined" color="primary">
-                   Search least similar
+              <Grid item>
+                <Button variant="outlined" color="primary" onClick={unlike}>
+                  Search least similar
                 </Button>
-              </Grid> */}
+              </Grid>
             </Grid>
           </div>
         </Container>
       </div>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
-          {!props.suggested ? (
+          {props.least ? (
+            <SongFindLeastCard song={props.least} />
+          ) : !props.suggested ? (
             <Typography>
               Sorry, no results from that query. Try again!
             </Typography>
@@ -156,6 +164,23 @@ function SongFind(props) {
               Please enter a query above
             </Typography>
           )}
+
+          {/* {!props.suggested ? (
+            <Typography>
+              Sorry, no results from that query. Try again!
+            </Typography>
+          ) : props.suggested.length > 0 ? (
+            props.suggested.map(song => (
+              <SongFindCards key={song.info.album} song={song} />
+            ))
+          ) : (
+            // suggested.map(song => {
+            //   console.log('map song', song)
+            // })
+            <Typography variant="h3" className={classes.smallText}>
+              Please enter a query above
+            </Typography>
+          )} */}
         </Grid>
       </Container>
     </div>
@@ -166,4 +191,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps, { songSuggest })(SongFind);
+export default connect(mapStateToProps, { songSuggest, unlikely })(SongFind);
