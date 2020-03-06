@@ -13,6 +13,10 @@ import { songSuggest } from "../actions/SuggestAction";
 import { unlikely } from "../actions/SuggestLeastAction";
 import SongFindCards from "./SongFindCards";
 import SongFindLeastCard from "./SongFindLeastCard";
+import SpotifyPlayer from "react-spotify-player";
+import Plot from 'react-plotly.js';
+import SongPlot from "./SongPlot";
+
 
 const useStyles = makeStyles(theme => ({
   // icon: {
@@ -146,14 +150,15 @@ function SongFind(props) {
       </div>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
+
           {props.least ? (
             <SongFindLeastCard song={props.least} />
           ) : !props.suggested ? (
             <Typography>
               Sorry, no results from that query. Try again!
             </Typography>
-          ) : props.suggested.length > 0 ? (
-            props.suggested.map(song => (
+          ) : props.suggested.tracks.length > 0 ? (
+            props.suggested.tracks.map(song => (
               <SongFindCards key={song.info.album} song={song} />
             ))
           ) : (
@@ -183,6 +188,7 @@ function SongFind(props) {
           )} */}
         </Grid>
       </Container>
+      {props.suggested.tracks && <SongPlot/>}
     </div>
   );
 }
