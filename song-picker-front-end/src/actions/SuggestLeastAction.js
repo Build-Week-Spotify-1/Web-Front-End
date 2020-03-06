@@ -12,7 +12,7 @@ export const unlikely = query => dispatch => {
 
   axios
     .get(
-      `https://cors-anywhere.herokuapp.com/https://spotify-suggestor.herokuapp.com/least?title=${title}&artist=${artist}`
+      `https://cors-anywhere.herokuapp.com/https://songster.herokuapp.com/least?title=${title}&artist=${artist}`
     )
     .then(res => {
       console.log("LEAST LIKELY res", res.data);
