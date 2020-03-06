@@ -100,7 +100,7 @@ function SongFindCards(props) {
           )}
         </CardActions>
         <SpotifyPlayer
-          uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
+          uri={`spotify:track:${props.song.info.id}`}
           size={size}
           view="coverart"
           theme="black"
