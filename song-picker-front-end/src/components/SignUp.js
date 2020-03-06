@@ -14,6 +14,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signup } from "../actions/SignupAction";
+import newlogogreen from "../newlogogreen.png";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -32,6 +33,16 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },logo: {
+    width: "100%",
+    height: "10%",
+    marginBottom: 60,
+    // [theme.breakpoints.down(1200)]: {
+    //   width: 400
+    // },
+    // [theme.breakpoints.down(960)]: {
+    //   width: "85%"
+    // },
   }
 }));
 
@@ -64,9 +75,8 @@ function SignUp(props) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+      <img src={newlogogreen} className={classes.logo}/>
+
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>

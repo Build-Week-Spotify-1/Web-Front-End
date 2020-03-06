@@ -12,6 +12,7 @@ import {
   Typography,
   makeStyles
 } from "@material-ui/core/";
+import newlogogreen from "../newlogogreen.png";
 
 const useStyles = makeStyles(theme => ({
   container: {},
@@ -44,6 +45,17 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  logo: {
+    width: "90%",
+    height: "5%",
+    marginBottom: 60,
+    // [theme.breakpoints.down(1200)]: {
+    //   width: 400
+    // },
+    // [theme.breakpoints.down(960)]: {
+    //   width: "85%"
+    // },
   }
 }));
 
@@ -68,7 +80,6 @@ export default function SignInSide() {
       .then(res => {
         // console.log("sign in res", res.data);
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("message", res.data.message);
         localStorage.setItem("user_id", res.data.user_id);
         history.push("/dashboard");
       })
@@ -85,7 +96,8 @@ export default function SignInSide() {
         <Grid item xs={false} sm={4} md={7} className={classes.image}></Grid>
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
-            <Avatar className={classes.avatar}></Avatar>
+            {/* <Avatar className={classes.avatar}></Avatar> */}
+            <img src={newlogogreen} className={classes.logo}/>
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
@@ -128,7 +140,6 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
               </Grid>
-         
             </form>
           </div>
         </Grid>

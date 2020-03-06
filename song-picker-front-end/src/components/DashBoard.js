@@ -4,9 +4,9 @@ import { Button, Grid, Typography, Container } from "@material-ui/core/";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import DashBoardSongCards from "./DashBoardSongCards";
+import { fetchUser } from "../actions/FetchUserAction";
 import { fetchFaves } from "../actions/FetchFavesAction";
 import { Link } from "react-router-dom";
-import newlogogreen from "../newlogogreen.png";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -44,12 +44,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function DashBoard(props) {
-  console.log("dashboard props", props);
+  // console.log("dashboard props", props);
   const classes = useStyles();
-  const userMessage = localStorage.getItem("message");
   const user_id = localStorage.getItem("user_id");
 
   useEffect(() => {
+    props.fetchUser(user_id);
     props.fetchFaves(user_id);
   }, []);
 
@@ -58,7 +58,6 @@ function DashBoard(props) {
       <CssBaseline />
 
       <div className={classes.heroContent}>
-        <newlogogreen />
         <Container maxWidth="sm">
           <Typography
             component="h1"
@@ -67,7 +66,7 @@ function DashBoard(props) {
             color="textPrimary"
             gutterBottom
           >
-            {userMessage}
+            Welcome, {props.user.username}
           </Typography>
           <Typography
             variant="h5"
@@ -112,4 +111,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps, { fetchFaves })(DashBoard);
+export default connect(mapStateToProps, { fetchUser, fetchFaves })(DashBoard);
