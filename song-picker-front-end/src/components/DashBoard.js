@@ -43,31 +43,32 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function DashBoard(props) {
+function DashBoard(props) {
   // console.log("dashboard props", props);
   const classes = useStyles();
   const userMessage = localStorage.getItem("message");
-  const id = localStorage.getItem("user_id");
-  const [faves, setFaves] = useState([]);
+  const user_id = localStorage.getItem("user_id");
+  // const [faves, setFaves] = useState([]);
+  // const [faves, setFaves] = [];
   // console.log("faves", faves);
 
   useEffect(() => {
-    // props.fetchFaves(id);
+    props.fetchFaves(user_id);
     // setFaves(props.faves);
     // console.log("useeffect runs");
-    AxiosWithAuth()
-      .get(`/api/songs/${id}/faves`)
-      .then(res => {
-        // console.log("get faves res", res);
-        setFaves(res.data);
-      })
-      .catch(err => {
-        console.error(
-          "Error communicating with server on GET to specific id faves: ",
-          err
-        );
-      });
-  });
+    // AxiosWithAuth()
+    //   .get(`/api/songs/${user_id}/faves`)
+    //   .then(res => {
+    //     // console.log("get faves res", res);
+    //     setFaves(res.data);
+    //   })
+    //   .catch(err => {
+    //     console.error(
+    //       "Error communicating with server on GET to specific id faves: ",
+    //       err
+    //     );
+    //   });
+  }, []);
 
   // console.log("dashboard faves", faves);
 
@@ -116,8 +117,9 @@ export default function DashBoard(props) {
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
           {/* {faves.map(data => {console.log('map data', data)})} */}
-          {faves.map(data => (
-            <DashBoardSongCards key={data.id} data={data} setFaves={setFaves} faves={faves}/>
+          {props.faves.map(data => (
+            // <DashBoardSongCards key={data.id} data={data} setFaves={setFaves} faves={faves}/>
+            <DashBoardSongCards key={data.id} data={data}/>
           ))}
         </Grid>
       </Container>
@@ -125,8 +127,8 @@ export default function DashBoard(props) {
   );
 }
 
-// const mapStateToProps = state => {
-//   return state;
-// };
+const mapStateToProps = state => {
+  return state;
+};
 
-// export default connect(mapStateToProps, { fetchFaves })(DashBoard);
+export default connect(mapStateToProps, { fetchFaves })(DashBoard);

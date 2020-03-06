@@ -10,7 +10,7 @@ export const fetchUser = id => dispatch => {
   AxiosWithAuth()
     .get(`/api/users/${id}`)
     .then(res => {
-      console.log("fetch user res", res);
+      // console.log("fetch user res", res);
       dispatch({ type: FETCH_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {

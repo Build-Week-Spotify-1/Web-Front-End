@@ -47,35 +47,35 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function EditProfile() {
+function EditProfile(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  // console.log("edit profile props", props);
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-    first_name: "",
-    last_name: ""
-  });
+  console.log("edit profile props", props);
+  // const [user, setUser] = useState({
+  //   username: "",
+  //   password: "",
+  //   first_name: "",
+  //   last_name: ""
+  // });
   let user_id = localStorage.getItem("user_id");
   // console.log('props user', props.user)
 
   useEffect(() => {
-    // props.fetchUser(user_id);
+    props.fetchUser(user_id);
     // console.log("edit profile props2", props)
     // console.log("HELLO?")
     // console.log('props user', props.user)
     // setUser(props.user);
     // console.log('user last', user)
 
-    AxiosWithAuth()
-      .get(`/api/users/${user_id}`)
-      .then(res => {
-        // console.log("edit profile get res", res);
-        setUser(res.data);
-      })
-      .catch(err => console.error(err));
+    // AxiosWithAuth()
+    //   .get(`/api/users/${user_id}`)
+    //   .then(res => {
+    //     // console.log("edit profile get res", res);
+    //     setUser(res.data);
+    //   })
+    //   .catch(err => console.error(err));
   }, []);
 
   // useEffect(() => {
@@ -83,34 +83,38 @@ export default function EditProfile() {
   //   console.log('2nd effect', user)
   // }, [])
   // console.log('user last', user)
-  const handleChange = e => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value
-    });
+  // const handleChange = e => {
+  //   setUser({
+  //     ...user,
+  //     [e.target.name]: e.target.value
+  //   });
+  // };
+
+const testing = e => {
+
+}
+  
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.editProfile(props.user);
+    history.push("/dashboard");
   };
 
   // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   props.editProfile(user);
-  //   history.push("/dashboard");
+  //   AxiosWithAuth()
+  //     .put(`/api/users/${user.id}`, user)
+  //     .then(res => {
+  //       console.log("edit profile res", res);
+  //       window.alert("Profile updated");
+  //       history.push("/dashboard");
+  //     })
+  //     .catch(err => {
+  //       console.error(
+  //         "Error communicating with server on PUT update profile: ",
+  //         err
+  //       );
+  //     });
   // };
-
-  const handleSubmit = e => {
-    AxiosWithAuth()
-      .put(`/api/users/${user.id}`, user)
-      .then(res => {
-        console.log("edit profile res", res);
-        window.alert("Profile updated");
-        history.push("/dashboard");
-      })
-      .catch(err => {
-        console.error(
-          "Error communicating with server on PUT update profile: ",
-          err
-        );
-      });
-  };
 
   // console.log("edit profile user", user);
   return (
@@ -119,7 +123,7 @@ export default function EditProfile() {
       <br />
       <Typography>Edit Profile</Typography>
       <br />
-      <TextField
+      {/* <TextField
         required
         className={classes.input}
         autoComplete="off"
@@ -128,7 +132,7 @@ export default function EditProfile() {
         value={user.username || ""}
         onChange={handleChange}
       />
-      {/* <br />
+      <br />
       <TextField
         className={classes.input}
         autoComplete="off"
@@ -137,7 +141,7 @@ export default function EditProfile() {
         name="password"
         value={user.password || ""}
         onChange={handleChange}
-      /> */}
+      />
       <br />
       <TextField
         required
@@ -166,15 +170,15 @@ export default function EditProfile() {
         color="primary"
       >
         Update
-      </Button>
+      </Button> */}
     </div>
   );
 }
 
-// const mapStateToProps = state => {
-//   return state;
-// };
+const mapStateToProps = state => {
+  return state;
+};
 
-// export default connect(mapStateToProps, { fetchUser, editProfile })(
-//   EditProfile
-// );
+export default connect(mapStateToProps, { fetchUser, editProfile })(
+  EditProfile
+);
