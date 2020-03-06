@@ -12,9 +12,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { addFaves } from "../actions/AddFavesAction";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import SpotifyPlayer from "react-spotify-player";
 
 const useStyles = makeStyles(theme => ({
-
   card: {
     height: "100%",
     display: "flex",
@@ -68,13 +68,13 @@ function SongFindCards(props) {
     setIsFaved(true);
   };
 
-  // name	type	required
-  // user_id	string	yes
-  // title	string	yes
-  // artist	string	yes
-  // album	string	no
   // console.log("isFaved?", isFaved);
   // console.log("image url", props.song.info.image);
+
+  const size = {
+    width: "100%",
+    height: 80
+  };
 
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -99,6 +99,12 @@ function SongFindCards(props) {
             <FavoriteIcon style={{ fill: "pink" }} />
           )}
         </CardActions>
+        <SpotifyPlayer
+          uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
+          size={size}
+          view="coverart"
+          theme="black"
+        />
       </Card>
     </Grid>
   );

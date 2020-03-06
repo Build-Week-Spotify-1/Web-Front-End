@@ -178,7 +178,7 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        faves: state.faves.filter(fave => fave.id === action.payload),
+        faves: state.faves.filter(fave => fave.id !== action.payload),
         error: ""
       };
     case DELETE_FAVES_FAIL:

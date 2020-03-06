@@ -10,6 +10,7 @@ import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import NavBar from "./components/NavBar";
 import SongFind from "./components/SongFind";
+
 function App() {
   const [toknd, setToknd] = useState("");
 

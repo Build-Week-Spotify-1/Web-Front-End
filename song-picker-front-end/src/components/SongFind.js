@@ -11,6 +11,7 @@ import {
 import { connect } from "react-redux";
 import { songSuggest } from "../actions/SuggestAction";
 import SongFindCards from "./SongFindCards";
+import SpotifyPlayer from "react-spotify-player";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -60,11 +61,11 @@ function SongFind(props) {
     artist: "",
     title: ""
   });
-  const [suggested, setSuggested] = useState([]);
+  // const [suggested, setSuggested] = useState([]);
 
-  useEffect(() => {
-    setSuggested(props.suggested);
-  }, [props.suggested]);
+  // useEffect(() => {
+
+  // }, []);
   // console.log("suggest query", query);
 
   const handleChanges = e => {
@@ -76,7 +77,7 @@ function SongFind(props) {
     props.songSuggest(query);
     // console.log("submit query", query);
   };
-
+  console.log("search props", props);
   return (
     <div>
       <div className={classes.heroContent}>
@@ -140,8 +141,12 @@ function SongFind(props) {
       </div>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
-          {suggested.length > 0 ? (
-            suggested.map(song => (
+          {!props.suggested ? (
+            <Typography>
+              Sorry, no results from that query. Try again!
+            </Typography>
+          ) : props.suggested.length > 0 ? (
+            props.suggested.map(song => (
               <SongFindCards key={song.info.album} song={song} />
             ))
           ) : (
@@ -152,6 +157,18 @@ function SongFind(props) {
               Please enter a suggestions above
             </Typography>
           )}
+          {/* {props.suggested.length > 0 ? (
+            props.suggested.map(song => (
+              <SongFindCards key={song.info.album} song={song} />
+            ))
+          ) : (
+            // suggested.map(song => {
+            //   console.log('map song', song)
+            // })
+            <Typography variant="h3" className={classes.smallText}>
+              Please enter a suggestions above
+            </Typography>
+          )} */}
         </Grid>
       </Container>
     </div>
