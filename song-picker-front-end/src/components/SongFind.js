@@ -14,9 +14,8 @@ import { unlikely } from "../actions/SuggestLeastAction";
 import SongFindCards from "./SongFindCards";
 import SongFindLeastCard from "./SongFindLeastCard";
 import SpotifyPlayer from "react-spotify-player";
-import Plot from 'react-plotly.js';
-import SongPlot from "./SongPlot";
-
+// import SongPlot from "./SongPlot";
+import Loader from "react-loader-spinner";
 
 const useStyles = makeStyles(theme => ({
   // icon: {
@@ -83,7 +82,7 @@ function SongFind(props) {
 
   const unlike = e => {
     e.preventDefault();
-    console.log(props, query)
+    console.log(props, query);
     props.unlikely(query);
     // console.log("submit query", query);
   };
@@ -99,7 +98,7 @@ function SongFind(props) {
             color="textPrimary"
             gutterBottom
           >
-            SONG FINDER THING
+            SONG FINDER
           </Typography>
           <Typography
             variant="h5"
@@ -150,29 +149,37 @@ function SongFind(props) {
         </Container>
       </div>
       <Container className={classes.cardGrid} maxWidth="md">
+        {props.isLoading ? (
+          <Loader
+            type="Audio"
+            color="#1DB954"
+            height={100}
+            width={100}
+            //  timeout={3000} //3 secs
+          />
+        ) : (
+          <></>
+        )}
         <Grid container spacing={4}>
-
-          {/* {props.suggested.tracks && <SongPlot/>} */}
-          {/* {props.suggested.tracks && ( */}
-            {console.log(props.least)}
-            {props.least ? (
-              <SongFindLeastCard song={props.least} />
-            ) : !props.suggested ? (
-              <Typography>
-                Sorry, no results from that query. Try again!
-              </Typography>
-            ) : props.suggested.tracks && props.suggested.tracks.length > 0 ? (
-              props.suggested.tracks.map(song => (
-                <SongFindCards key={song.info.album} song={song} />
-              ))
-            ) : (
-              // suggested.map(song => {
-              //   console.log('map song', song)
-              // })
-              <Typography variant="h3" className={classes.smallText}>
-                Please enter a query above
-              </Typography>
-            )}
+          {console.log(props.least)}
+          {props.least ? (
+            <SongFindLeastCard song={props.least} />
+          ) : !props.suggested ? (
+            <Typography>
+              Sorry, no results from that query. Try again!
+            </Typography>
+          ) : props.suggested.tracks && props.suggested.tracks.length > 0 ? (
+            props.suggested.tracks.map(song => (
+              <SongFindCards key={song.info.album} song={song} />
+            ))
+          ) : (
+            // suggested.map(song => {
+            //   console.log('map song', song)
+            // })
+            <Typography variant="h3" className={classes.smallText}>
+              Please enter a query above
+            </Typography>
+          )}
 
           {/* {!props.suggested ? (
             <Typography>
@@ -192,7 +199,7 @@ function SongFind(props) {
           )} */}
         </Grid>
       </Container>
-      {props.suggested.tracks && <SongPlot/>}
+      {/* {props.suggested.tracks && <SongPlot/>} */}
     </div>
   );
 }

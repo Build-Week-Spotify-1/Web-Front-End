@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SongFindCards(props) {
+  console.log("songfind props", props);
   const classes = useStyles();
   const id = localStorage.getItem("user_id");
   const [newFave] = useState({
@@ -81,6 +82,7 @@ function SongFindCards(props) {
         </CardActions>
         <SpotifyPlayer
           uri={`spotify:track:${props.song.info.id}`}
+          // uri={`spotify:track:6QigflFkJSD32nJgwWV85G`}
           size={size}
           view="coverart"
           theme="black"

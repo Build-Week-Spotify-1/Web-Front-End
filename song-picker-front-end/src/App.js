@@ -10,6 +10,7 @@ import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import NavBar from "./components/NavBar";
 import SongFind from "./components/SongFind";
+import Sliders from "./components/Sliders";
 
 function App() {
   const [toknd, setToknd] = useState("");
@@ -54,6 +55,7 @@ function App() {
         <PrivateRoute path="/dashboard" component={NavBar} />
         <PrivateRoute path="/search" component={NavBar} />
         <PrivateRoute path="/edit" component={NavBar} />
+        <PrivateRoute path="/sliders" component={NavBar} />
 
         <Switch>
           {/* <PrivateRoute path="/" component={NavBar} /> */}
@@ -67,6 +69,8 @@ function App() {
           <PrivateRoute path="/search" component={SongFind} />
 
           <PrivateRoute path="/edit" component={EditProfile} />
+
+          <PrivateRoute path="/sliders" component={Sliders} />
         </Switch>
       </div>
     </ThemeProvider>
