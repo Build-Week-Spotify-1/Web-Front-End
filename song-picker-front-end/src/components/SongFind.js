@@ -53,6 +53,10 @@ const useStyles = makeStyles(theme => ({
   field: {
     marginTop: 20,
     width: "100%"
+  },
+  loader: {
+    margin: "auto",
+    paddingBottom: 100
   }
 }));
 
@@ -150,13 +154,22 @@ function SongFind(props) {
       </div>
       <Container className={classes.cardGrid} maxWidth="md">
         {props.isLoading ? (
-          <Loader
-            type="Audio"
-            color="#1DB954"
-            height={100}
-            width={100}
-            //  timeout={3000} //3 secs
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            className={classes.loader}
+          >
+            <Loader
+              type="Audio"
+              color="#1DB954"
+              height={100}
+              width={100}
+              //  timeout={3000} //3 secs
+            />
+            <br />
+            <Typography>Loading suggestions...</Typography>
+          </Grid>
         ) : (
           <></>
         )}

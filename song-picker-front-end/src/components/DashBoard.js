@@ -7,6 +7,7 @@ import DashBoardSongCards from "./DashBoardSongCards";
 import { fetchUser } from "../actions/FetchUserAction";
 import { fetchFaves } from "../actions/FetchFavesAction";
 import { Link } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -40,6 +41,11 @@ const useStyles = makeStyles(theme => ({
   },
   linkbut: {
     textDecoration: "none"
+  },
+  loader: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    paddingBottom: 100
   }
 }));
 
@@ -97,6 +103,21 @@ function DashBoard(props) {
       </div>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
+          {props.isLoading ? (
+            <div className={classes.loader}>
+              <Loader
+                type="Audio"
+                color="#1DB954"
+                height={100}
+                width={100}
+                //  timeout={3000} //3 secs
+              />
+              <br />
+              <Typography>Loading songs...</Typography>
+            </div>
+          ) : (
+            <></>
+          )}
           {/* {props.faves.map(data => {console.log('map data', data.id)})} */}
           {props.faves.map(data => (
             <DashBoardSongCards key={data.id} data={data} />
