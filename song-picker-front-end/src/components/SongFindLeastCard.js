@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SongFindLeastCards(props) {
+  console.log("least likely props", props);
   const classes = useStyles();
   const id = localStorage.getItem("user_id");
   const [newFave] = useState({
@@ -51,13 +52,14 @@ function SongFindLeastCards(props) {
     setIsFaved(true);
   };
 
+  //FOR SPOTIFY PLAYER
   const size = {
     width: "100%",
     height: 80
   };
 
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid container justify="center">
       <Card className={classes.card}>
         <CardMedia
           className={classes.cardMedia}

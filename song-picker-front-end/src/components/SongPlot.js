@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { songSuggest } from "../actions/SuggestAction";
-import Plot from 'react-plotly.js';
+// import Plot from 'react-plotly.js';
 
 function SongPlot({suggested}) {
   const makeTrace = track => {

@@ -10,7 +10,6 @@ import {
   Container
 } from "@material-ui/core/";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signup } from "../actions/SignupAction";
